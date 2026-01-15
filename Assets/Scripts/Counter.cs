@@ -1,29 +1,38 @@
+using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
 public class Counter : MonoBehaviour
 {
-    private const string Title = "Counter: ";
     private const float Delay = 0.5f;
     private const int Step = 1;
-
-    [SerializeField] private TextMeshProUGUI _counterText;
 
     private WaitForSeconds _wait;
     private int _counter;
     private bool _canCount;
 
+    [SerializeField] private InputReader _input;
+
+    public event Action<int> CounterChanged; 
+
+    private void OnEnable()
+    {
+        _input.WorkStateSwitched += SwitchWorkState;
+    }
+
+    private void OnDisable()
+    {
+        _input.WorkStateSwitched -= SwitchWorkState;
+    }
+
     private void Start()
     {
         _counter = 0;
-        _counterText.text = Title + _counter;
         _canCount = false;
         _wait = new(Delay);
     }
 
-    private void OnMouseDown()
+    private void SwitchWorkState()
     {
         if (_canCount)
         {
@@ -41,7 +50,7 @@ public class Counter : MonoBehaviour
         while (_canCount)
         {
             _counter += Step;
-            _counterText.text = Title + _counter;
+            CounterChanged?.Invoke(_counter);
 
             yield return _wait;
         }

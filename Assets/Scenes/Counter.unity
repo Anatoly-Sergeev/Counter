@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Count
+  m_text: 'Counter:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -361,6 +361,8 @@ GameObject:
   - component: {fileID: 987596461}
   - component: {fileID: 987596460}
   - component: {fileID: 987596459}
+  - component: {fileID: 987596463}
+  - component: {fileID: 987596462}
   m_Layer: 0
   m_Name: CounterObject
   m_TagString: Untagged
@@ -401,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef9605e86d0ed64da70588a61263718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _counterText: {fileID: 279899504}
+  _input: {fileID: 987596462}
 --- !u!4 &987596461
 Transform:
   m_ObjectHideFlags: 0
@@ -417,6 +419,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &987596462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987596458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85c4ecf226b3043478daefadcef92449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &987596463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987596458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9e63b4f2012ed4896e0458cca49004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _counterText: {fileID: 279899504}
+  _counter: {fileID: 987596460}
 --- !u!1 &2049727373
 GameObject:
   m_ObjectHideFlags: 0
