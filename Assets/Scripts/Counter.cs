@@ -7,11 +7,12 @@ public class Counter : MonoBehaviour
     private const float Delay = 0.5f;
     private const int Step = 1;
 
+    [SerializeField] private InputReader _input;
+
     private WaitForSeconds _wait;
+    private Coroutine _coroutineIncrementCounter;
     private int _counter;
     private bool _canCount;
-
-    [SerializeField] private InputReader _input;
 
     public event Action<int> CounterChanged; 
 
@@ -37,11 +38,15 @@ public class Counter : MonoBehaviour
         if (_canCount)
         {
             _canCount = false;
+
+            if(_coroutineIncrementCounter != null)
+                StopCoroutine(_coroutineIncrementCounter);
         }
         else
         {
             _canCount = true;
-            StartCoroutine(IncrementCounter());
+
+            _coroutineIncrementCounter = StartCoroutine(IncrementCounter());
         }
     }
 
